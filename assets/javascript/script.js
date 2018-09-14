@@ -68,5 +68,9 @@ var foods = ['pancakes', 'pizza', 'hotdogs', 'taco', 'sushi', 'doughnut', 'pasta
 
         });
 
+        function clearPage() {
+            location.reload();
+        }
+
 
         buildButtons();

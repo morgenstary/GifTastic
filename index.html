@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,9 @@
     <!-- CSS Reset -->
     <link rel="stylesheet" href="./assets/css/reset.css">
 
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
     <!-- Added link to the jQuery Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -16,23 +20,30 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
 
-    
+
 
 </head>
+
 <body>
 
-        <div id="message"></div>
+    <br>
+    <br>
+    <div id="message"></div>
+    <div id="food-selector"></div>
+    <br>
+    <br>
 
-        <div id="food-selector"></div>
-    
-        <form id="food-form">
-            <label for="food">What Food Would You Like To Search: </label>
-            <input id="food" type="text"><br>
-            <input id="add-food" type="submit" value="Submit">
-        </form>
-    
-        <div id="container"></div>
-    
+    <form id="food-form">
+        <label for="food">What Food Would You Like To Search: </label>
+        <input id="food" type="text"><br>
+        <input id="add-food" type="submit" value="Submit">
+        <button onclick="clearPage()">Clear page</button>
+    </form>
+    <br>
+    <br>
+
+    <div id="container"></div>
+
 </body>
 
 <!-- javascript -->
