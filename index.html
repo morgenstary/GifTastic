@@ -1,125 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GifTastic</title>
+    <title>Giftastic!</title>
 
     <!-- CSS Reset -->
     <link rel="stylesheet" href="./assets/css/reset.css">
 
-    <!-- jquery -->
+    <!-- Added link to the jQuery Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
 
-    <!-- javascript -->
-    <!-- <script type="text/javascript" src="./assets/javascript/script.js"></script> -->
-
-    <!-- Javascript in html page because link to js not working for some reason and frankly I'm too tired and frustrated to figure it out... -->
+    
 
 </head>
-
-
 <body>
 
-    <div id="message"></div>
+        <div id="message"></div>
 
-    <div id="food-selector"></div>
-
-    <form id="food-form">
-        <label for="food">What Food Would You Like To Search: </label>
-        <input id="food" type="text"><br>
-        <input id="add-food" type="submit" value="Submit">
-    </form>
-
-    <div id="container"></div>
-
-
-   <script>
-
-       var foods = ['pancakes', 'pizza', 'hotdogs', 'taco', 'sushi', 'doughnut', 'pasta', 'bacon', 'cheeseburger', 'sandwich'];
+        <div id="food-selector"></div>
     
-    function buildButtons() {
-        $("#food-selector").empty();
-        for (var i = 0; i < foods.length; i++) {
-            var foodButton = $("<button class='foodItem'>").html(foods[i]);
-            $("#food-selector").append(foodButton);
-        }
-    }
-
-    $("#add-food").on('click', function() {
-       event.preventDefault();
-       $("#message").text("");
-       var userFood = $("#food").val();
-       if (userFood.length > 0 && foods.indexOf(userFood) === -1) {
-            foods.push(userFood); 
-            buildButtons();
-       } else {
-           $("#message").text("You did not enter an item or the item you selected already has a button.");
-       }
-       $("#food").val("");
-    });
-
-    $('#food-selector').on('click', '.foodItem', function(){
-        $("#message").text("");
-        var food = $(this).text();
-
-        $.get({
-            url: "https://api.giphy.com/v1/gifs/search?q=" + food + "&api_key=dc6zaTOxFJmzC&limit=10g",
-            success: function (result) {
-                var data = result.data;
-                for (var i = 0; i < data.length; i++) {
-                    var gifObject = data[i];
-                    var imageDiv = $("<div>");
-                    var rating = gifObject.ratings;
-                    var pRating = $("<p>").text("Rating: " + data[i].rating);
-                    var gifURLStill = gifObject.images.fixed_height_still.url;
-                    var gifURLAnimated = gifObject.images.fixed_height.url;
-                    var imageTag = $("<img>");
-                    imageTag.attr("src", gifURLStill);
-                    imageTag.attr("data-still", gifURLStill);
-                    imageTag.attr("data-animated", gifURLAnimated);
-                    imageTag.attr("data-state", "still");
-                    imageTag.addClass("giphyImg");
-                    imageDiv.append(pRating);
-                    imageDiv.append(imageTag);
-                    $("#container").append(imageDiv);
-                }
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
-    });
-
-    $("#container").on('click', '.giphyImg', function(){
-        $("#message").text("");
-        var state = $(this).attr("data-state");
-        if (state === "still") {
-            var animatedURL = $(this).attr("data-animated");
-            $(this).attr("src", animatedURL);
-            $(this).attr("data-state", "animated");
-        } else {
-            var stillURL = $(this).attr("data-still");
-            $(this).attr("src", stillURL);
-            $(this).attr("data-state", "still");
-        }
-
-    });
-
-
-    buildButtons();
-   
-   
-   </script>
-
+        <form id="food-form">
+            <label for="food">What Food Would You Like To Search: </label>
+            <input id="food" type="text"><br>
+            <input id="add-food" type="submit" value="Submit">
+        </form>
     
-
+        <div id="container"></div>
+    
 </body>
+
+<!-- javascript -->
+<script src="assets/javascript/script.js"></script>
 
 </html>
